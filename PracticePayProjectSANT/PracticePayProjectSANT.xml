@@ -1,0 +1,169 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PracticePayProjectSANT</name>
+    </assembly>
+    <members>
+        <member name="T:PracticePayProjectSANT.PayRecord">
+            <summary>
+            Stores an instance of an employee pay record including hours worked and the pay rates for each
+            shift as parallel arrays.
+            </summary>
+        </member>
+        <member name="F:PracticePayProjectSANT.PayRecord._hours">
+            <summary>
+            Protected fields for the parallel arrays that store the hours and pay rates for each employee shift.
+            </summary>
+        </member>
+        <member name="F:PracticePayProjectSANT.PayRecord._rates">
+            <summary>
+            Protected fields for the parallel arrays that store the hours and pay rates for each employee shift.
+            </summary>
+        </member>
+        <member name="M:PracticePayProjectSANT.PayRecord.#ctor(System.Int32,System.Double[],System.Double[])">
+            <summary>
+            Pay record constructor
+            </summary>
+            <param name="id">int: The employee identifier</param>
+            <param name="hours">double[]: Array of the employee's shift hours worked.</param>
+            <param name="rates">double[]: Array of the employee's pay rates for the shifts worked.</param>
+        </member>
+        <member name="P:PracticePayProjectSANT.PayRecord.Gross">
+            <summary>
+            Read only property that derives the Employee Gross pay by calculating
+            the total of hours * rate of all shifts from the parallel arrays.
+            </summary>
+        </member>
+        <member name="P:PracticePayProjectSANT.PayRecord.Id">
+            <summary>
+            Property for storing Employee id
+            </summary>
+        </member>
+        <member name="P:PracticePayProjectSANT.PayRecord.Net">
+            <summary>
+            Read only derived property that returns the net payment which is 'Gross - Tax'
+            </summary>
+        </member>
+        <member name="P:PracticePayProjectSANT.PayRecord.Tax">
+            <summary>
+            Abstract property that must be overriden by any class that inherits from PayRecord (derived class).
+            </summary>
+        </member>
+        <member name="M:PracticePayProjectSANT.PayRecord.GetDetails">
+            <summary>
+            Returns details of the PayRecord, including the Employee ID, Gross, Net, and Tax values. This method
+            is declared as 'virtual' so that it can be overriden by any derived (inheriting) class if necessary.
+            </summary>
+            <returns>string: Details of the Pay Record.</returns>
+        </member>
+        <member name="T:PracticePayProjectSANT.PayRecordWriter">
+            <summary>
+            Class responsible for writing an aggregate collection of PayRecord objects to a comma delimited file (csv - comma separated file).
+            </summary>
+        </member>
+        <member name="M:PracticePayProjectSANT.PayRecordWriter.Write(System.String,System.Collections.Generic.List{PracticePayProjectSANT.PayRecord},System.Boolean)">
+            <summary>
+            Static method for writing a collection of PayRecord objects to a comma delimited file and
+            provides the option to also write the values to the Console.
+            </summary>
+            <param name="file">string: The name of the file to create and write the records to.</param>
+            <param name="records">List&gt;PayRecord&lt;: The collection of PayRecord objects.</param>
+            <param name="writeToConsole">bool: Optional named parameter for writing to the console.</param>
+        </member>
+        <member name="T:PracticePayProjectSANT.ResidentPayRecord">
+            <summary>
+            Specialisation of the PayRecord class for Resident employee pay record.
+            </summary>
+        </member>
+        <member name="M:PracticePayProjectSANT.ResidentPayRecord.#ctor(System.Int32,System.Double[],System.Double[])">
+            <summary>
+            Constructor with parameters matching the base class, all parameters are passed to
+            the base class constructor.
+            </summary>
+            <param name="id">int: The Employee Id</param>
+            <param name="hours">double[]: Array of hours for employee shifts worked.</param>
+            <param name="rates">double[]: Array of pay rates for employee shifts worked.</param>
+        </member>
+        <member name="P:PracticePayProjectSANT.ResidentPayRecord.Tax">
+            <summary>
+            Property that overrides the Tax property in the base class. Invokes the
+            TaxCalculator.CalculatorResidentialTax method to determine the Tax amount for 
+            the resident employee's current pay record.
+            </summary>
+        </member>
+        <member name="T:PracticePayProjectSANT.TaxCalculator">
+            <summary>
+            Class that calculates the two different Tax calculations as required for either a
+            an Employee that is a resident, or an Employee that is a Working Holiday Employee.
+            </summary>
+        </member>
+        <member name="M:PracticePayProjectSANT.TaxCalculator.CalculateResidentialTax(System.Double)">
+            <summary>
+            Static method for determining and returning the tax amount to be withheld for a Resident
+            employee's pay record.
+            </summary>
+            <param name="gross"></param>
+            <returns>double: The amount of Tax to withhold for a Resident Employee.</returns>
+        </member>
+        <member name="M:PracticePayProjectSANT.TaxCalculator.CalculateWorkingHolidayTax(System.Double,System.Int32)">
+            <summary>
+            Static method for determining and returning the tax amount withheld for a Working Holiday
+            Employee's pay record.
+            </summary>
+            <param name="gross">double: The gross amount for the employee pay record</param>
+            <param name="yearToDate">int: The year to date earnings amount for the employee pay record.</param>
+            <returns>double: The amount of Tax to withhold for a Working Holiday Employee.</returns>
+        </member>
+        <member name="T:PracticePayProjectSANT.WorkingHolidayPayRecord">
+            <summary>
+            Specialisation of Payrecord for a Working Holiday Employee
+            </summary>
+        </member>
+        <member name="F:PracticePayProjectSANT.WorkingHolidayPayRecord._visa">
+            <summary>
+            Backing (field) variables for Employee's Visa Category Number and 
+            Year to Date Earnings.
+            </summary>
+        </member>
+        <member name="F:PracticePayProjectSANT.WorkingHolidayPayRecord._yearToDate">
+            <summary>
+            Backing (field) variables for Employee's Visa Category Number and 
+            Year to Date Earnings.
+            </summary>
+        </member>
+        <member name="P:PracticePayProjectSANT.WorkingHolidayPayRecord.Visa">
+            <summary>
+            Property for the Employee Visa Classification
+            </summary>
+        </member>
+        <member name="P:PracticePayProjectSANT.WorkingHolidayPayRecord.YearTodate">
+            <summary>
+            Property for storing the total gross amount that the Employee has earned
+            in the current financial year.
+            </summary>
+        </member>
+        <member name="P:PracticePayProjectSANT.WorkingHolidayPayRecord.Tax">
+            <summary>
+            Property that overrides the Tax property in the base class.
+            </summary>
+        </member>
+        <member name="M:PracticePayProjectSANT.WorkingHolidayPayRecord.#ctor(System.Int32,System.Double[],System.Double[],System.Int32,System.Int32)">
+            <summary>
+            Constructor, implmeenting additional 'initialisation' requirements in this derived
+            class (WorkingHolidayPayRecord), Visa and YearToDate
+            </summary>
+            <param name="id"></param>
+            <param name="hours"></param>
+            <param name="rates"></param>
+            <param name="visa"></param>
+            <param name="yearToDate"></param>
+        </member>
+        <member name="M:PracticePayProjectSANT.WorkingHolidayPayRecord.GetDetails">
+            <summary>
+            Override of the base class GetDetails() method that additionally inclues the Visa
+            and Year to Date values.
+            </summary>
+            <returns>string: Details of the Working Holiday Employee's Pay Record.</returns>
+        </member>
+    </members>
+</doc>
