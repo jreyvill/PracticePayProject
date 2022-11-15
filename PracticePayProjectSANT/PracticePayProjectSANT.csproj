@@ -69,6 +69,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CsvImporter.cs" />
     <Compile Include="PayRecord.cs" />
     <Compile Include="PayRecordWriter.cs" />
     <Compile Include="Program.cs" />
