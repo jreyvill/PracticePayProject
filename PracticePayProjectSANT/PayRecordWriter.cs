@@ -30,8 +30,8 @@ namespace PracticePayProjectSANT
             //when an object (in the case below, the 'StreamWriter' object), goes out of scope, it is removed
             //from memory asap.
             //'$' allows string interpolation '@' delimits any '\' backslashes so that that are take as literal backslashes and not delimiters.
-            using (var stream = new StreamWriter(Path.GetFullPath($@"..\..\..\Export\{file}.csv"))) 
-            using (var csv = new CsvWriter(stream, CultureInfo.InvariantCulture)) 
+            using (StreamWriter stream = new StreamWriter(Path.GetFullPath($@"..\..\Export\{file}.csv"))) 
+            using (CsvWriter csv = new CsvWriter(stream, CultureInfo.InvariantCulture)) 
             {
                 csv.WriteRecords(records);
             }
@@ -39,9 +39,9 @@ namespace PracticePayProjectSANT
             if (writeToConsole)
             {
                 Console.WriteLine();
-                foreach (var recrd in records)
+                foreach (var record in records)
                 {
-                    Console.WriteLine($" {recrd.GetDetails()}");
+                    Console.WriteLine($" {record.GetDetails()}");
                 }
             }
         }

@@ -25,15 +25,15 @@ namespace PracticePayProjectSANT
             switch (gross)
             {
                 case double n when (n < 72):
-                    return 0.19 * gross - 0.19; //derived from the formula in the above pdf. i.e. y = ax − b
+                    return Math.Floor(0.19 * gross - 0.19); //derived from the formula in the above pdf. i.e. y = ax − b
                 case double n when (n < 361):
-                    return 0.2342 * gross - 3.2130;
+                    return Math.Floor(0.2342 * gross - 3.2130);                    
                 case double n when (n < 932):
-                    return 0.3477 * gross - 44.2476;
+                    return Math.Floor(0.3477 * gross - 44.2476);
                 case double n when (n < 1380):
-                    return 0.3450 * gross - 41.7311;
+                    return Math.Floor(0.3450 * gross - 41.7311);
                 case double n when (n < 3111):
-                    return 0.3900 * gross - 103.8657;
+                    return Math.Floor(0.3900 * gross - 103.8657);
                 default:
                     return 0.4700 * gross - 352.7888;
             }

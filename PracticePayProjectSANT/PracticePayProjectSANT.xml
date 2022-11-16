@@ -4,6 +4,34 @@
         <name>PracticePayProjectSANT</name>
     </assembly>
     <members>
+        <member name="T:PracticePayProjectSANT.CsvImporter">
+            <summary>
+            Class for importing comma delimited data from .csv file and returns a collection of
+            PayRecord objects. It does this by declaring it two methods, ImportPayRecords()
+            and CreatePayRecords() as static methods.
+            </summary>
+        </member>
+        <member name="M:PracticePayProjectSANT.CsvImporter.ImportPayrecords(System.String)">
+            <summary>
+            Imports the data from a csv file specified in the fileName parameter argument.
+            Reads through each row in the .csv file and builds up a List of <see cref="T:PracticePayProjectSANT.PayRecord"/> objects.
+            </summary>
+            <param name="fileName"><see cref="T:System.String"/>The filename of the (comma delimited data values .csv) file to import the records from.</param>
+            <returns><see cref="T:System.Collections.Generic.List`1"/>A new instance of a <see cref="T:System.Collections.Generic.List`1"/> object for each pay shift that was imported from the specified comma delimited file.</returns>
+        </member>
+        <member name="M:PracticePayProjectSANT.CsvImporter.CreatePayRecord(System.Int32,System.Double[],System.Double[],System.String,System.String)">
+            <summary>
+            A private static method that is invoked by the ImportPayRecords() method and provides
+            code re-use for instantiating a new PayRecord object that is added to the <see cref="T:System.Collections.Generic.List`1"/>
+            instance returned by the ImportPayRecords() method.
+            </summary>
+            <param name="id"><see cref="T:System.Int32"/>: The id of the Employee for the imported <see cref="T:PracticePayProjectSANT.PayRecord"/> instance.</param>
+            <param name="hours"><see cref="T:double[]"/>: The hours of each shift for the Employee of the imported <see cref="T:PracticePayProjectSANT.PayRecord"/> instance.</param>
+            <param name="rates"><see cref="T:double[]"/>: The pay rates for the hours worked in the shift for the Employee of the imported <see cref="T:PracticePayProjectSANT.PayRecord"/> instance.</param>
+            <param name="visa"><see cref="T:System.String"/>: The Visa Category of the Employee. An empty string is passed for Resident Employee</param>
+            <param name="yearToDate"><see cref="T:System.String"/>: The Year To Date earnings of the Working Holiday Employee. An empty string is passed for Resident Employees.</param>
+            <returns><see cref="T:PracticePayProjectSANT.PayRecord"/>The PayRecord for the Employee.</returns>
+        </member>
         <member name="T:PracticePayProjectSANT.PayRecord">
             <summary>
             Stores an instance of an employee pay record including hours worked and the pay rates for each
