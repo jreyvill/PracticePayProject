@@ -117,7 +117,7 @@ namespace PractPayNUnitTestProj
             PayRecordWriter.Write(file, _records, true);
             bool fileExists = File.Exists(Path.GetFullPath($@"..\..\Export\{file}.csv"));
 
-            Assert.IsTrue(fileExists);
+            Assert.That(fileExists, Is.True);
 
         }
 
